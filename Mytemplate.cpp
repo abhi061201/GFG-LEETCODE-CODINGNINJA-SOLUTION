@@ -1,5 +1,23 @@
 #include <bits/stdc++.h>
+#define ll long long
 using namespace std;
+
+// function to count unique elements from a vector
+int uniqueele(vector<ll> v)
+{
+
+    int n = v.size();
+    unordered_map<ll, ll> mp;
+    for (auto x : v)
+    { // auto keyword is used for automatic typename
+        mp[x]++;
+    }
+    //if we want to print elements also 
+    //         for(auto y :mp){
+    //             cout<<y.first <<" "<< y.second<<"\n";
+    //         }
+    return mp.size();
+}
 
 // function to check a no. is palindrome or not
 int ispalindrome(string s){
@@ -12,6 +30,10 @@ int ispalindrome(string s){
 int main(){
 
 
+    ll t;
+    while(t-->0){
+    
+    }
 
 return 0;
 }
