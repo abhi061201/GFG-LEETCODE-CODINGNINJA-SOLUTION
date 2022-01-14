@@ -25,15 +25,13 @@ int ispalindrome(string s){
     
     for(int i=0 ;i<len/2 ;i++){
         if(s[i]!= s[len-i-1])return false;
-    }
+    }}
     
 int main(){
 
-
-    ll t;
-    while(t-->0){
+ll t;
+while(t-->0){
     
-    }
-
+}
 return 0;
 }
