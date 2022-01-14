@@ -30,6 +30,7 @@ int ispalindrome(string s){
 int main(){
 
 ll t;
+    cin>>t;
 while(t-->0){
     
 }
