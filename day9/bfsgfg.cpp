@@ -1,33 +1,32 @@
-
-#include <bits/stdc++.h>
-
-void bfs(int x, vector<vector<int>> &adj, vector <int>&vis, vector <int> &v ){
-    vis[x]=1;
-    queue<int> q;
-    q.push(x);
-    while(!q.empty()){
-        int temp= q.front();
-        q.pop();
-        v.push_back(temp);
-       for(int it=0 ;it<adj.size();it++){
-            if(!vis[it] && adj[temp][it]==1){
-                q.push(it);
-                vis[it]=1;
+ void bfs(int x ,vector<int> adj[] ,vector<int> &vis,vector<int> &v ){
+        
+        vis[x]=1;
+        queue<int> q;
+        q.push(x);
+        while(!q.empty()){
+            int temp= q.front();
+            q.pop();
+            v.push_back(temp);
+            for(auto it : adj[temp]){
+                if(!vis[it]){
+                    q.push(it);
+                    vis[it]=1;
+                }
             }
         }
+        
     }
-}
-vector<int> BFS(int V, vector<pair<int, int>> edges)
-{
-    vector<int>vis(V,0);
-    vector<int> v;
-  vector<vector<int>> adj(V,vector<int>(V,0));
-    for(auto it : edges){
-        adj[it.first][it.second]=1;
-        adj[it.second][it.first]=1;
+    vector<int> bfsOfGraph(int V, vector<int> adj[]) {
+        // Code here
+        vector<int> vis(V,0);
+        vector <int> v;
+       
+           
+                bfs(0,adj,vis,v);
+            
+        
+        return v;
     }
-    for(int i=0 ;i<V ;i++){
-        if(!vis[i])bfs(i, adj,vis, v);
-    }
-    return v;
-}
+    
+    
+};
