@@ -25,8 +25,12 @@ int ispalindrome(string s){
     
     for(int i=0 ;i<len/2 ;i++){
         if(s[i]!= s[len-i-1])return false;
-    }}
-    
+    }
+}
+// function to check if a no.is power of 2 or not
+bool power_2(int x){
+       return x&& (!(x&(x-1)));
+}    
 int main(){
 
 ll t;
