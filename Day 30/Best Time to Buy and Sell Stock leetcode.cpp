@@ -1,3 +1,6 @@
+// TC=O(N)
+//SC=constant;
+
 class Solution {
 public:
     int maxProfit(vector<int>& p) {
