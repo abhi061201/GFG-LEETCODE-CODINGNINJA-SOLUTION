@@ -1,3 +1,6 @@
+// TC= 2^n;
+
+
 #include <bits/stdc++.h>
 using namespace std;
 
