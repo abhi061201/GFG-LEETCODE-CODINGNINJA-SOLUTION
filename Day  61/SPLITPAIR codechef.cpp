@@ -1,0 +1,69 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+
+// function to count unique elements from a vector
+int uniqueele(vector<ll> v)
+{
+
+    int n = v.size();
+    unordered_map<ll, ll> mp;
+    for (auto x : v)
+    { // auto keyword is used for automatic typename
+        mp[x]++;
+    }
+    //if we want to print elements also 
+    //         for(auto y :mp){
+    //             cout<<y.first <<" "<< y.second<<"\n";
+    //         }
+    return mp.size();
+}
+
+// function to check a no. is palindrome or not
+int ispalindrome(string s){
+    int len= s.length();
+    
+    for(int i=0 ;i<len/2 ;i++){
+        if(s[i]!= s[len-i-1])return false;
+    }}
+    
+int main(){
+ios_base::sync_with_stdio(false);cin.tie(NULL);
+ll t;
+    cin>>t;
+while(t-->0){
+    
+    ll n;
+    cin>>n;
+    int last= n%10;
+    n=n/10;
+    int ans=0;
+    if(last%2==0){
+         while(n){
+              int temp= n%10;
+              n=n/10;
+              if(temp%2==0){
+               ans=1;
+               break;
+              }
+              
+         }
+    }
+   if(last%2!=0){
+         while(n){
+              int temp= n%10;
+              n=n/10;
+              if(temp%2!=0){
+               ans=1;
+               break;
+              }
+              
+         }
+    }
+    if(ans==1)cout<<"YES\n";
+    else cout<<"NO\n";
+   
+    
+}
+return 0;
+}
