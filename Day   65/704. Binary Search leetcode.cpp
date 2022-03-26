@@ -26,3 +26,18 @@ public:
         
     }
 };
+
+
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        
+        auto k= lower_bound(nums.begin(), nums.end(), target);
+        // if(nums[k-nums.begin()+1]==target)return k-nums.begin();
+        // cout<<k-nums.begin()<<endl;
+        int index= k-nums.begin();
+        if(index>=nums.size())return -1;
+        if(nums[index]==target)return index;
+        return -1;
+    }
+};
