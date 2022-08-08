@@ -1,8 +1,24 @@
 #include <bits/stdc++.h>
-#define ll long long
+#define ll long long int
 using namespace std;
 
 // function to count unique elements from a vector
+ll mix_sum_window_size_k(vector<ll>v, ll k){
+     ll windowSum= 0, n= v.size(), totalSum=0;
+     for(int i=0 ; i<n ; i++){
+          if(i<n-k)windowSum+=v[i];
+          totalSum+= v[i];
+     }
+     ll j=n-k; ll temp=windowSum;
+     
+     while(j<n){
+          temp+=v[j]-v[j-(n-k)];
+          windowSum= min(windowSum,temp );
+          j++;
+     }
+     return totalSum- windowSum;
+     
+}
 int uniqueele(vector<ll> v)
 {
 
@@ -25,18 +41,27 @@ int ispalindrome(string s){
     
     for(int i=0 ;i<len/2 ;i++){
         if(s[i]!= s[len-i-1])return false;
-    }
-}
-// function to check if a no.is power of 2 or not
-bool power_2(int x){
-       return x&& (!(x&(x-1)));
-}    
-int main(){
-
-ll t;
-    cin>>t;
-while(t-->0){
+    }}
+    // for josephus put k-- first
+ll josephus(vector<ll>&v ,ll k, ll index){
+    if(v.size()==1)return v[0];
     
+    index= (index+k)%v.size();
+    v.erase(v.begin()+index);
+    return josephus(v, k, index);
 }
+
+void solve(){
+     ll t;
+     cin>>t;
+     while(t--){
+          
+     }
+}    
+    
+int main(){
+ios_base::sync_with_stdio(false);cin.tie(NULL);
+solve();
+
 return 0;
 }
