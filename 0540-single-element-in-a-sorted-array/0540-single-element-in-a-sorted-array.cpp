@@ -20,7 +20,7 @@ public:
             }
             
         }
-        if(getFirstIndex(h, nums)==-1)return nums[h];
+        if(h%2==0)return nums[h];
         return nums[l];
     }
     int getFirstIndex(int x, vector<int>&nums)
