@@ -11,7 +11,7 @@ public:
         vector<int>vis(n,0);
         return go(s, d, adj,vis);
     }
-    int go(int s, int d, vector<vector<int>>&adj,vector<int>&vis )
+    int go(int &s, int &d, vector<vector<int>>&adj,vector<int>&vis )
     {
         vis[s]=1;
         if(s==d)return 1;
