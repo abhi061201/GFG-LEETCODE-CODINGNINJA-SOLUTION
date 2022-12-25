@@ -6,9 +6,19 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    int minimumEnergy(vector<int>& height, int n) {
+    int minimumEnergy(vector<int>& h, int n) {
         vector<int>dp(n+1,-1);
-        return go(height, n-1,dp);
+        dp[0]=0;
+        
+        for(int i=1; i<n;i++)
+        {
+            int one=1e9,two=1e9;
+            one= abs(h[i]-h[i-1]) + dp[i-1];
+            if(i>=2) two= abs(h[i]-h[i-2]) + dp[i-2];
+            dp[i]=min(one,two);
+        }
+        
+         return dp[n-1];
     }
     int go(vector<int>&h, int i,vector<int>&dp)
     {
