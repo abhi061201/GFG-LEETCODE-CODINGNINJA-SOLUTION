@@ -6,25 +6,25 @@ public:
         
         int l=maxi, h=sum, mid;
         
-        // while(h>l)
-        // {
-        //     mid= (h-l)/2 + l;
-        //     int curday= getday(mid, w);
-        //     if(curday<= days )
-        //     {
-        //         h= mid-1;              
-        //     }
-        //     else 
-        //     {
-        //         l= mid+1;
-        //     }                       
-        // }
-        for(int j= l; j<= h; j++)
+        while(h>l)
         {
-            int curday= getday(j, w);
-            if(curday<=days)return j;
+            mid= (h-l)/2 + l;
+            int curday= getday(mid, w);
+            if(curday<= days )
+            {
+                h= mid;              
+            }
+            else 
+            {
+                l= mid+1;
+            }                       
         }
-        return 0;
+        // for(int j= l; j<= h; j++)
+        // {
+        //     int curday= getday(j, w);
+        //     if(curday<=days)return j;
+        // }
+        return l;
     }
     int getday(int maxweight, vector<int>&w)
     {
