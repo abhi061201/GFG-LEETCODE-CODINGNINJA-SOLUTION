@@ -9,8 +9,22 @@ class Solution {
   // 1- fighting
   // 2- practice
     int maximumPoints(vector<vector<int>>& points, int n) {
-        vector<vector<int>>dp(n, vector<int>(4,-1));
-        return go(n-1, points, 3,dp);
+        vector<vector<int>>dp(n+1, vector<int>(3,0));
+        
+        for(int i=1; i<=n; i++)
+        {
+            for(int act=0; act<3 ;act++)
+            {
+                int run=0, fight=0, practice=0;
+                if(act!=0)run= points[i-1][0]+ dp[i-1][0];
+                if(act!=1) fight= points[i-1][1]+dp[i-1][1];
+                if(act!=2) practice= points[i-1][2]+ dp[i-1][2];
+                
+                dp[i][act]= max({run, fight, practice});
+            }
+        }
+        
+        return max({dp[n][0], dp[n][1], dp[n][2]});
     }
     
     int go(int i, vector<vector<int>>& points, int act,vector<vector<int>>&dp)
