@@ -1,8 +1,23 @@
 class Solution {
 public:
     int uniquePaths(int m, int n) {
-        vector<vector<int>>dp(m, vector<int>(n, -1));
-        return go(m-1, n-1, dp);
+        int mod= 2*1e9;
+        vector<vector<long long int>>dp(m+1, vector<long long int >(n+1, 1));
+        // dp[0][0]=1;
+
+        for(int i=1; i<m ; i++)
+        {
+            // dp[i][0]=1;
+            for(int j=1; j<n; j++)
+            {
+                // dp[0][j]=1;
+                int up = dp[i-1][j];
+                int left = dp[i][j-1];
+                dp[i][j]= (up%mod+left%mod)%mod;
+            }
+        }
+        
+        return dp[m-1][n-1];
     }
     int go(int i, int j,vector<vector<int>>&dp)
     {
