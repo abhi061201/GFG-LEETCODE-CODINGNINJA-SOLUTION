@@ -3,7 +3,22 @@ public:
     int minimumTotal(vector<vector<int>>& tri) {
         int n= tri.size();
         vector<vector<int>>dp(n, vector<int>(n,-1));
-        return go(0, 0, tri, dp);
+        for(int i=0; i<n;i++)
+        {
+            dp[n-1][i] = tri[n-1][i];
+        }
+        for(int row=n-2; row>=0 ; row--)
+        {
+            for(int col=0; col<=row; col++)
+            {
+                int down=1e9, dr= 1e9;
+                down = dp[row+1][col];
+                dr= dp[row+1][col+1];
+                dp[row][col]=tri[row][col]+ min(down, dr);
+            }
+        }
+        
+        return dp[0][0];
     }
     int go(int row, int col, vector<vector<int>>& tri, vector<vector<int>>&dp)
     {
