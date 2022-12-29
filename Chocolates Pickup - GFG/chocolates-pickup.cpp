@@ -10,8 +10,37 @@ class Solution {
     int dr[3]= {-1,0,1};
     int solve(int N, int M, vector<vector<int>>& grid) {
         n=N, m=M;
-        vector<vector<vector<int>>>dp(n,vector<vector<int>>(m,vector<int>(m,-1) ) );
-        return go(0, 0, m-1, grid,dp);
+        vector<vector<vector<int>>>dp(n+1,vector<vector<int>>(m,vector<int>(m,0) ) );
+        
+        for(int i= n-1; i>=0 ; i--)
+        {
+            for(int j1=0; j1<m; j1++)
+            {
+                for(int j2=0; j2<m ; j2++)
+                {
+                    int ans=0;
+                    // dr[k] = change in col of robo 1
+                    // robot ki ek move k liye doosre k paas 3 choice h to total choice= 3*3=9;
+                    for(int k=0; k<3; k++)
+                    {
+                        int curj1= dr[k]+j1;
+                        if(!valid(curj1))continue;
+                        for(int l= 0; l<3; l++)
+                        {
+                            int curj2= dr[l]+j2;
+                            if(!valid(curj2))continue;
+                            if(j1== j2)ans= max(ans, grid[i][j1] + dp[i+1][curj1][curj2]);
+                            else ans= max(ans, grid[i][j1]+ grid[i][j2]+dp[i+1][curj1][curj2] );
+                            
+                        }
+                    }
+                    dp[i][j1][j2]= ans;
+                }
+            }
+        }
+        
+        
+        return dp[0][0][m-1];
     }
     int go(int i, int j1, int j2,vector<vector<int>>& grid,vector<vector<vector<int>>>&dp )
     {
