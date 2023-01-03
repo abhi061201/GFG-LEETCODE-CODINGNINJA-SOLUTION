@@ -7,13 +7,15 @@ public:
         for(int j=0; j<strl; j++)
         {
             string temp;
-            for(int i=0; i<n; i++)
+            for(int i=0; i<n-1; i++)
             {
-                temp.push_back(strs[i][j]);
+                if(strs[i][j] > strs[i+1][j])
+                {
+                    count++;
+                    break;
+                }
             }
-            string str= temp;
-            sort(temp.begin(), temp.end());
-            count+= str!=temp;
+            
         }
         return count;
         
