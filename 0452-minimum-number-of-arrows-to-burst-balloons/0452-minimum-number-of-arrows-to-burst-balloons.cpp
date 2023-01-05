@@ -3,14 +3,14 @@ public:
     int findMinArrowShots(vector<vector<int>>& points) {
         sort(points.begin(), points.end());
         int n= points.size();
-        long long int count=1, st=points[0][0], en=points[0][1];
+        int count=1, st=points[0][0], en=points[0][1];
         
         for(auto it: points)
         {
             if(isoverlap(st, en, it[0], it[1]))
             {
-                st= max(st, (long long int)it[0]);
-                en= min(en, (long long int)it[1]);
+                st= max(st, it[0]);
+                en= min(en, it[1]);
             }
             else 
             {
