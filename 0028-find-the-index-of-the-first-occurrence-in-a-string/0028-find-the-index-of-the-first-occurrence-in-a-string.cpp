@@ -4,19 +4,24 @@ public:
         int n= hs.length(), m= ne.length();
         vector<int>lps(n+m+1,0);
         string temp= ne+"&"+hs;
-        for(int i=1; i<n+m+1; i++)
+        int i=1,j=0;
+        while(i<n+m+1)
         {
-            if(temp[i]==temp[lps[i-1]]){
-                lps[i]= 1+ lps[i-1];
+            
+            if(temp[i]==temp[j]){
+                j++;
+                lps[i]= j;
+                i++;
             }
             else {
-                int j= lps[i-1];
-                while(j>0 && temp[i]!= temp[j])
+                if(j>0)
                 {
                     j= lps[j-1];
                 }
-                if(temp[i]==temp[j])j++;
-                lps[i]= j;
+                else{
+                    lps[i]= 0;
+                    i++;
+                }
             }
         }
         
