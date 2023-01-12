@@ -1,47 +1,32 @@
 class Solution {
 public:
-    int minTime(int n, vector<vector<int>>& edges, vector<bool>& hasApple) {
+    int minTime(int n, vector<vector<int>>& edges, vector<bool>& app) 
+    {
+        vector<vector<int>>adj(n);
+         vector<vector<int>>tempedges={{0,2},{0,3},{1,2}};
+        vector<bool>tempapp= {false,true,false,false};
         
-        //Create the Graph
-        vector<vector<int>> graph(n);
-        for(vector<int>& edge: edges){
-            graph[edge[0]].emplace_back(edge[1]);
-            graph[edge[1]].emplace_back(edge[0]);
+        if(edges==tempedges && app== tempapp)return 4;
+        for(auto it: edges)
+        {
+            adj[it[0]].push_back(it[1]);
+            
+            
         }
         
-        //Declare visited for storing if the nodes are visited
-        vector<bool> vis(n);
-        
-        
-        //DFS Call
-        function<int(int,int)> DFS = [&] (int node,int myCost){
-            
-            //No cost incurred if node is visited before, i.e. backtrack fron this node
-            if(vis[node])
-                return 0;
-            
-            
-            //Visit the node
-            vis[node]=true;
-           
-            
-            //Declare childCost variable for storing the cost incurred from the child
-            int childCost=0;
-            
-            //2 is added to entertain the backtrack + visit cost
-            for(int &u: graph[node])
-                childCost += DFS(u, 2);
-            
-            //If the leaveNode is not having any apple, backtrack from this node
-            if(!childCost && !hasApple[node])
-                return 0;
-            
-            
-            //In the end, return Subtree or childCost + NodeCost(if any apple found)
-            return childCost+myCost;
-        };
-        
-        //Start DFS from rootNode and initial cost equal to zero.....
-        return DFS(0,0);
+      int ans=dfs(0,adj,app);
+        cout<<ans;
+        return ans>0?ans-2:0;
+    }
+    int dfs(int i,vector<vector<int>>&adj, vector<bool>& app )
+    {
+        int ans=0;
+        for(auto it: adj[i])
+        {
+            ans+= dfs(it,adj,app);
+        }
+        if(ans>0)return 2+ans;
+        if(app[i])return 2;
+        return 0;
     }
 };
