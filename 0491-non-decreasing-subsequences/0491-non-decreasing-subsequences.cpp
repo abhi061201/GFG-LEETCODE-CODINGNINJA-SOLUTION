@@ -17,22 +17,14 @@ public:
             return ;
         }
         
-        if(temp.size()==0)
+        if(temp.size()==0|| temp.back() <= nums[i])
         {
             temp.push_back(nums[i]);
             go(i+1, nums, temp);
             temp.pop_back();
             
         }
-        else 
-        {
-            if(temp[temp.size()-1] <= nums[i])
-            {
-                temp.push_back(nums[i]);
-                go(i+1, nums, temp);
-                temp.pop_back();
-            }
-        }
+        
         go(i+1, nums, temp);
         
     }
