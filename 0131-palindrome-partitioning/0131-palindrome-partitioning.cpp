@@ -1,35 +1,35 @@
 class Solution {
 public:
-    vector<vector<string>> ans;
+    vector<vector<string>>ans;
     vector<vector<string>> partition(string s) {
         vector<string>temp;
         go(0, s, temp);
-        
         return ans;
     }
-    
-    void go(int start, string &s, vector<string>&temp)
+    void go(int i, string &s, vector<string>&temp)
     {
-        if(start==s.length())ans.push_back(temp);
-        string tempstr;
-        for(int i=start; i<s.length(); i++)
+        if(i==s.length())
         {
-            tempstr.push_back(s[i]);
-            if(pali(tempstr))
+            ans.push_back(temp);
+        }
+        string str;
+        for(int start= i; start<s.length(); start++)
+        {
+            str.push_back(s[start]);
+            if(ispali(str))
             {
-                temp.push_back(tempstr);
-                go(i+1, s, temp);
+                temp.push_back(str);
+                go(start+1, s, temp);
                 temp.pop_back();
             }
         }
     }
-    bool pali(string &s)
+    bool ispali(string &s)
     {
         int i=0, j = s.length()-1;
         while(i<j)
         {
-            if(s[i]!= s[j])return 0;
-            i++;j--;
+            if(s[i++]!= s[j--])return 0;
         }
         return 1;
     }
