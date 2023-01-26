@@ -7,33 +7,22 @@ class Solution {
   public:
     // Function to detect cycle in an undirected graph.
     bool isCycle(int n, vector<int> adj[]) {
-       vector<int>vis(n,0);
-       
-       for(int i=0; i<n; i++)
-       {
-           if(!vis[i]){if(check(i,adj,vis))return 1;}
-       }
-       return 0;
-    }
-    bool check(int i, vector<int>adj[], vector<int>&vis)
-    {
-        queue<pair<int,int>>q;
-        q.push({i,-1});
-        vis[i]=1;
-        while(!q.empty())
+        vector<int>vis(n,0);
+        for(int i=0; i<n; i++)
         {
-            int cur = q.front().first;
-            int par = q.front().second;
-            q.pop();
-            for(auto it: adj[cur])
-            {
-                if(!vis[it])
-                {
-                    vis[it]=1;
-                    q.push({it,cur});
-                }
-                else if(par!= it)return 1;
+            if(!vis[i]){vis[i]=1;if(checkcycle(i, adj, -1,vis))return 1;}
+        }
+        return 0;
+    }
+    bool checkcycle(int i, vector<int>adj[], int par, vector<int>&vis)
+    {
+        for(auto it: adj[i])
+        {
+            if(!vis[it]){
+                vis[it]=1;
+                if(checkcycle(it,adj,i,vis))return 1;
             }
+            else if(par!= it)return 1;
         }
         return 0;
     }
