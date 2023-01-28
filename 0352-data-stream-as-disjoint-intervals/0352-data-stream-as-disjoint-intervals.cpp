@@ -3,7 +3,7 @@ public:
     vector<int>v;
     int maxi=0;
     SummaryRanges() {
-         vector<int>temp(10002,0);
+        vector<int>temp(10002,0);
         v= temp;
     }
     
@@ -16,7 +16,7 @@ public:
         vector<vector<int>>ans;
         vector<int>temp;
         
-        for(int i=0; i<=maxi+1;i++)
+        for(int i=0; i<=10000+1;i++)
         {
             if(v[i]==1)
             {
