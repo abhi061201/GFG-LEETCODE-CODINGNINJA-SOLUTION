@@ -1,23 +1,25 @@
 class Solution {
 public:
     vector<int> findAnagrams(string s, string p) {
-        int n= s.length(), m= p.length();
         vector<int>ans;
-        
-        vector<int>pa(26,0);
-        for(auto it:p)pa[it-'a']++;
+        vector<int>pchar(26,0);
+        for(auto it:p)pchar[it-'a']++;
+        int n = s.length(), m = p.length();
         for(int i=0; i<n; i++)
         {
-            string str= s.substr(i,m);
+            string temp= s.substr(i,m);
+            if(check(temp,pchar))ans.push_back(i);
             
-            if(checkanagram(str,pa))ans.push_back(i);
         }
         return ans;
     }
-    int checkanagram(string &s, vector<int>pa)
+    
+    int check(string &temp, vector<int>&pchar)
     {
-        for(auto it:s)pa[it-'a']--;
-        for(auto it:pa)if(it!=0)return 0;
+        vector<int>v(26,0);
+        for(auto it:temp)v[it-'a']++;
+        for(int i=0; i<26; i++)if(v[i]!=pchar[i])return 0;
         return 1;
+        
     }
 };
