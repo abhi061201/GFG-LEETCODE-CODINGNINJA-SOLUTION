@@ -4,10 +4,10 @@ public:
         vector<int>ans;
         vector<int>pchar(26,0);
         for(auto it:p)pchar[it-'a']++;
-        int n = s.length(), m = p.length();
+        int n = s.length(), m = p.length(); string temp;
         for(int i=0; i<n; i++)
         {
-            string temp= s.substr(i,m);
+             temp= s.substr(i,m);
             if(check(temp,pchar))ans.push_back(i);
             
         }
