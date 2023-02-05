@@ -18,8 +18,7 @@ public:
     {
         vector<int>v(26,0);
         for(auto it:temp)v[it-'a']++;
-        for(int i=0; i<26; i++)if(v[i]!=pchar[i])return 0;
-        return 1;
+        return v==pchar;
         
     }
 };
