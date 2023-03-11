@@ -21,27 +21,34 @@
  */
 class Solution {
 public:
-    
-    TreeNode* sortedListToBST(ListNode* head) {
-        vector<int>v;
+    int getListSize(ListNode* head)
+    {
+        int i=0;
         while(head)
         {
-            v.push_back(head->val);
+            i++;
             head= head->next;
         }
-        int n= v.size();
-        return getTree(v,0,n-1);
+        return i;
     }
-    TreeNode* getTree(vector<int>&v, int start, int end)
-    {
-        
-        if(end< start)return NULL;
-        if(start==end)return new TreeNode(v[start]);
-        int mid= (start+end)/2;
-        TreeNode* root= new TreeNode(v[mid]);
-        root->left= getTree(v, start, mid-1);
-        root->right= getTree(v, mid+1, end);
+    TreeNode* sortedListToBST(ListNode* head) {
+        int n= getListSize(head);
+        if(n==0)return NULL;
+        if(n==1)return new TreeNode(head->val);
+        int midi= n/2 -1;
+        ListNode* temp= head, *mid, *mid_next;
+        while(midi--)
+        {
+            temp= temp->next;
+            
+        }
+        mid= temp->next;
+        mid_next= mid->next;
+        temp->next= NULL;
+        TreeNode* root= new TreeNode(mid->val);
+        root->left= sortedListToBST(head);
+        root->right= sortedListToBST(mid_next);
         return root;
-        
     }
+    
 };
