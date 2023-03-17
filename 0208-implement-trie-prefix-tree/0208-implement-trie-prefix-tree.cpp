@@ -1,45 +1,48 @@
 class TrieNode{
     public:
     TrieNode* links[26];
-    int end;
-    
-    TrieNode(){
-        for(int i=0; i<26; i++)links[i]=NULL;
-        end=0;
+    int eow;
+    TrieNode()
+    {
+        for(int i=0;i<26;i++)
+            links[i]=NULL;
+        eow=0;
     }
-    
 };
 class Trie {
+    TrieNode* root;
 public:
-    TrieNode *root;
     Trie() {
         root= new TrieNode();
     }
     
     void insert(string word) {
-        TrieNode *temp= root;
-        for(auto it: word){
-            if(!temp->links[it-'a']){
+        TrieNode* temp= root;
+        for(auto it: word)
+        {
+            if(!temp->links[it-'a'])
+            {
                 temp->links[it-'a']= new TrieNode();
             }
-            temp = temp->links[it-'a'];
+            temp= temp->links[it-'a'];
         }
-        temp->end=1;
+        temp->eow++;
     }
     
     bool search(string word) {
-        TrieNode *temp= root;
-        for(auto it: word){
+        TrieNode* temp= root;
+        for(auto it: word)
+        {
             if(!temp->links[it-'a'])return false;
             temp= temp->links[it-'a'];
         }
-        return temp->end;
-        
+        return temp->eow;
     }
     
-    bool startsWith(string prefix) {
-        TrieNode *temp= root;
-        for(auto it: prefix){
+    bool startsWith(string word) {
+        TrieNode* temp= root;
+        for(auto it: word)
+        {
             if(!temp->links[it-'a'])return false;
             temp= temp->links[it-'a'];
         }
