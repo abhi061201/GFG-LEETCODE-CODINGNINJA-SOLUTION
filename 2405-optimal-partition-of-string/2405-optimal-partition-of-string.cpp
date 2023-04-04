@@ -4,15 +4,16 @@ public:
         int n= s.length();
         
         int count=0;
-        set<char>se;
+        vector<int>v(26,0);
         for(int i=0; i<n;i++)
         {
-            if(se.find(s[i])!= se.end())
+            if(v[s[i]-'a'])
             {
                 count++;
-                se.clear();
+                vector<int>temp(26,0);
+                v=temp;
             }
-            se.insert(s[i]);
+            v[s[i]-'a']=1;
         }
         
         return count+1;
